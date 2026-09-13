@@ -1,0 +1,37 @@
+---
+title: "Golden Retriever Lifespan and Weight"
+subtitle: "2,500 observations examining canine longevity and health"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: graphic
+#| fig-width: 9
+#| fig-height: 6
+
+library(tidyverse)
+
+dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |> 
+  mutate(
+    activity_level = factor(activity_level, levels = c("Low", "Moderate", "High")),
+    overall_health = factor(overall_health, levels = c("Poor", "Fair", "Good", "Excellent"))
+  )
+
+dogs |> 
+  ggplot(aes(x = weight_lbs, y = lifespan_years, color = gender)) +
+  geom_point(alpha = 0.25, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1.2) +
+  labs(
+    title = "Weight vs. Lifespan in Golden Retrievers",
+    subtitle = "Observations of 2,500 dogs showing the relationship between weight and lifespan",
+    x = "Weight (lbs)",
+    y = "Lifespan (years)",
+    color = "Gender"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall lifespan.
