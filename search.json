@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "Golden Retriever Life Expectancy and Weight",
     "section": "",
-    "text": "This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall life expectancy."
+    "text": "This graphic displays 10,000 observations of Golden Retrievers, illustrating how body weight and gender relate to overall life expectancy.\n\nCool Facts About Golden Retrievers\n\nSoft Mouth: Goldens have an exceptionally gentle grip, famously capable of carrying a raw egg in their mouths without cracking it.\nWater-Repellent Coats: They have a dense double coat designed to repel water and keep them warm when retrieving waterfowl in cold lakes and rivers.\nTop-Tier Smarts: Ranked the 4th smartest dog breed, they excel in search-and-rescue, service work, and therapy.\nLongevity and Weight: While the average life expectancy for a Golden Retriever is around 10 to 12 years, veterinary studies show that keeping them at a lean, healthy weight can add nearly two years to their lifespan!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "A Golden Retriever\n\n\nThis project investigates the relationship between activity levels, weight, and life expectancy in Golden Retrievers using a dataset of 2,500 observations.\nThis work was completed as part of Milestone 4 for Bayesian Data Science."
+    "text": "A Golden Retriever\n\n\nThis project investigates the relationship between activity levels, weight, and life expectancy in Golden Retrievers using a dataset of 10,000 observations.\nThis work was completed as part of Milestone 4 for Bayesian Data Science."
   }
 ]
