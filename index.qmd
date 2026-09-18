@@ -1,5 +1,5 @@
 ---
-title: "Golden Retriever Lifespan and Weight"
+title: "Golden Retriever Life Expectancy and Weight"
 subtitle: "2,500 observations examining canine longevity and health"
 execute:
   echo: false
@@ -25,13 +25,13 @@ dogs |>
   geom_point(alpha = 0.25, size = 2) +
   geom_smooth(method = "lm", se = FALSE, linewidth = 1.2) +
   labs(
-    title = "Weight vs. Lifespan in Golden Retrievers",
-    subtitle = "Observations of 2,500 dogs showing the relationship between weight and lifespan",
+    title = "Weight vs. Life Expectancy in Golden Retrievers",
+    subtitle = "Observations of 2,500 dogs showing the relationship between weight and life expectancy",
     x = "Weight (lbs)",
-    y = "Lifespan (years)",
+    y = "Life Expectancy (years)",
     color = "Gender"
   ) +
   theme_minimal(base_size = 14)
 ```
 
-This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall lifespan.
+This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall life expectancy.
