@@ -1,16 +1,16 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Golden Retriever Life Expectancy and Weight",
+    "section": "",
+    "text": "This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall life expectancy."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "A Golden Retriever\n\n\nThis project investigates the relationship between activity levels, weight, and lifespan in Golden Retrievers using a dataset of 2,500 observations.\nThis work was completed as part of Milestone 4 for Bayesian Data Science."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Golden Retriever Lifespan and Weight",
-    "section": "",
-    "text": "This graphic displays 2,500 observations of Golden Retrievers, illustrating how body weight and gender relate to overall lifespan."
+    "text": "A Golden Retriever\n\n\nThis project investigates the relationship between activity levels, weight, and life expectancy in Golden Retrievers using a dataset of 2,500 observations.\nThis work was completed as part of Milestone 4 for Bayesian Data Science."
   }
 ]
