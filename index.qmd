@@ -36,6 +36,8 @@ dogs |>
 
 This graphic displays 10,000 observations of Golden Retrievers, illustrating how body weight and gender relate to overall life expectancy.
 
+Dogs play an irreplaceable role in human lives, offering loyal companionship, emotional comfort, and unconditional love. Beyond being cherished family members, dogs encourage healthier and more active lifestyles, reduce stress, and frequently serve vital functions as therapy, service, and working partners in our communities.
+
 ### Cool Facts About Golden Retrievers
 
 - **Soft Mouth:** Goldens have an exceptionally gentle grip, famously capable of carrying a raw egg in their mouths without cracking it.
