@@ -7,13 +7,15 @@ execute:
   message: false
 ---
 
-Use the interactive chart below to explore the data. You can **hover** over any point to view individual dog details, **click or double-click** legend categories to isolate specific health ratings, and **drag to zoom** in on particular weight or lifespan ranges.
+Use the controls below to choose what data you want to see. You can filter by overall health, activity level, gender, and weight range, and switch between the interactive chart and the data table.
 
 ```{r}
-#| label: interactive-plot
+#| label: setup-crosstalk
 
 library(tidyverse)
 library(plotly)
+library(crosstalk)
+library(DT)
 
 dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |> 
   mutate(
@@ -21,28 +23,65 @@ dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |>
     overall_health = factor(overall_health, levels = c("Poor", "Fair", "Good", "Excellent"))
   )
 
-p <- dogs |> 
-  slice_sample(n = 2000) |> 
-  ggplot(aes(
-    x = weight_lbs, 
-    y = lifespan_years, 
-    color = overall_health,
-    text = paste0(
-      "Weight: ", round(weight_lbs, 1), " lbs<br>",
-      "Lifespan: ", round(lifespan_years, 1), " yrs<br>",
-      "Health: ", overall_health, "<br>",
-      "Activity: ", activity_level, "<br>",
-      "Gender: ", gender
-    )
-  )) +
-  geom_point(alpha = 0.6, size = 1.8) +
-  labs(
-    title = "Interactive Explorer: Weight vs. Lifespan",
-    x = "Weight (lbs)",
-    y = "Life Expectancy (years)",
-    color = "Overall Health"
-  ) +
-  theme_minimal(base_size = 12)
-
-ggplotly(p, tooltip = "text")
+shared_dogs <- dogs |> 
+  slice_sample(n = 1500) |> 
+  SharedData$new()
 ```
+
+```{r}
+#| label: filters
+
+bscols(
+  widths = c(3, 3, 3, 3),
+  filter_select("health", "Overall Health:", shared_dogs, ~overall_health),
+  filter_select("activity", "Activity Level:", shared_dogs, ~activity_level),
+  filter_select("gender", "Gender:", shared_dogs, ~gender),
+  filter_slider("weight", "Weight (lbs):", shared_dogs, ~weight_lbs, step = 1)
+)
+```
+
+::: {.panel-tabset}
+
+## Interactive Scatter Plot
+
+```{r}
+#| label: interactive-plot
+
+plot_ly(
+  shared_dogs,
+  x = ~weight_lbs,
+  y = ~lifespan_years,
+  color = ~overall_health,
+  colors = "Set2",
+  type = "scatter",
+  mode = "markers",
+  marker = list(opacity = 0.65, size = 7),
+  text = ~paste0(
+    "<b>Weight:</b> ", round(weight_lbs, 1), " lbs<br>",
+    "<b>Lifespan:</b> ", round(lifespan_years, 1), " yrs<br>",
+    "<b>Health:</b> ", overall_health, "<br>",
+    "<b>Activity:</b> ", activity_level, "<br>",
+    "<b>Gender:</b> ", gender
+  ),
+  hoverinfo = "text"
+) |> 
+  layout(
+    xaxis = list(title = "Weight (lbs)"),
+    yaxis = list(title = "Life Expectancy (years)"),
+    legend = list(title = list(text = "Overall Health"))
+  )
+```
+
+## Searchable Data Table
+
+```{r}
+#| label: interactive-table
+
+datatable(
+  shared_dogs,
+  options = list(pageLength = 10, dom = "tip", scrollX = TRUE),
+  rownames = FALSE
+)
+```
+
+:::
