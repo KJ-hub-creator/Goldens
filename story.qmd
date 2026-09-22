@@ -57,3 +57,9 @@ Goldens possess an extraordinarily high sensitivity to human vocal tones and emo
 #### 4. The Exercise Longevity Dividend
 As our data demonstrates, regular play isn't just entertainment—it's preventive medicine. Maintaining a high daily activity routine is associated with up to **0.9 additional years of life expectancy**, helping dogs preserve lean muscle and healthy joints into their senior years.
 :::
+
+::: {.callout-warning appearance="simple"}
+#### 5. The Morris Lifetime Study & Lifespan Research
+The [Morris Animal Foundation Golden Retriever Lifetime Study](https://www.morrisanimalfoundation.org/article/golden-retriever-lifetime-study-2026-update) has tracked over 3,000 Golden Retrievers to investigate why the breed's average life expectancy has fallen from 16–17 years decades ago to 10–12 years today. With cancer accounting for roughly 75% of deaths in the cohort, the landmark study focuses on risk factors across genetics, lifestyle, and early detection.
+:::
+

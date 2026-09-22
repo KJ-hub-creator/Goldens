@@ -7,3 +7,9 @@ title: "About"
 This project investigates the relationship between activity levels, weight, and life expectancy in Golden Retrievers using a dataset of 10,000 observations.
 
 This work was completed as part of Milestone 4 for Bayesian Data Science.
+
+### Sources and References
+
+- [DeepScan Diagnostics: Golden Retrievers Are Living 40% Shorter Lives](https://www.deepscandx.com/blog/golden-retrievers-are-living-40-shorter-lives-understanding-a-breed-in-crisis)
+- [Morris Animal Foundation: Golden Retriever Lifetime Study Update](https://www.morrisanimalfoundation.org/article/golden-retriever-lifetime-study-2026-update)
+
