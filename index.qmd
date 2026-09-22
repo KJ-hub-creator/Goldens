@@ -22,8 +22,8 @@ dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |>
   )
 
 dogs |> 
-  ggplot(aes(x = Body_condition_categorical, y = Age_current_years, color = Body_condition_categorical)) +
-  geom_jitter(width = 0.25, alpha = 0.35, size = 1.2) +
+  ggplot(aes(x = Body_condition_categorical, y = Age_current_years, fill = Body_condition_categorical)) +
+  geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.35, binwidth = 0.15, alpha = 0.7) +
   facet_wrap(~Gender) +
   labs(
     title = "Age Distribution by Body Condition and Gender in Golden Retrievers",
@@ -33,7 +33,7 @@ dogs |>
   ) +
   theme_minimal(base_size = 13) +
   theme(legend.position = "none") +
-  scale_color_brewer(palette = "Dark2")
+  scale_fill_brewer(palette = "Blues")
 ```
 
 This graphic displays observations of 3,049 real Golden Retrievers from the Golden Retriever Lifetime Study, illustrating how body condition and gender relate to age across the cohort.
