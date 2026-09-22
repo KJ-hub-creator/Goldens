@@ -1,6 +1,6 @@
 ---
-title: "Story: The Impact of Daily Activity"
-subtitle: "How exercise and movement shape a Golden Retriever's lifespan"
+title: "Story: Regional Health and Longevity"
+subtitle: "How geographic environment and lifestyle shape a Golden Retriever's life"
 execute:
   echo: false
   warning: false
@@ -15,24 +15,24 @@ execute:
 library(tidyverse)
 
 dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |> 
-  mutate(activity_level = factor(activity_level, levels = c("Low", "Moderate", "High")))
+  filter(Region_of_residence != "")
 
 dogs |> 
-  ggplot(aes(x = activity_level, y = lifespan_years, fill = activity_level)) +
+  ggplot(aes(x = Region_of_residence, y = Age_current_years, fill = Region_of_residence)) +
   geom_boxplot(alpha = 0.7, show.legend = FALSE) +
   labs(
-    title = "The Power of Play: Daily Exercise and Longevity",
-    subtitle = "Dogs with high daily activity live nearly a full year longer than sedentary dogs",
-    x = "Activity Level",
-    y = "Life Expectancy (years)"
+    title = "Age Distribution Across Geographic Regions",
+    subtitle = "Tracking 3,049 Golden Retrievers across five major regions in the United States",
+    x = "Region of Residence",
+    y = "Current Age (years)"
   ) +
   theme_minimal(base_size = 14) +
   scale_fill_brewer(palette = "Blues")
 ```
 
-When looking at factors influencing a Golden Retriever's health, diet and weight often get the most attention. However, our dataset of 10,000 dogs reveals another critical factor: daily physical activity.
+When looking at factors influencing a Golden Retriever's health, geographic environment and lifestyle play a substantial role. Across 3,049 dogs in the Morris Animal Foundation Golden Retriever Lifetime Study, dogs are tracked across five key regions—Midwest, Mountain, Northeast, Pacific, and South.
 
-Golden Retrievers with high activity levels live to an average of **12.2 years**, compared to **11.3 years** for dogs with low activity levels. Regular walks, fetching, and active playtime provide cardiovascular benefits and joint mobility that appear to add nearly an entire extra year of companionship.
+Dogs in the Mountain and Pacific regions show slightly higher median ages (8.2 and 8.1 years) compared to dogs in the South and Midwest (7.9 years). Researchers are actively investigating how regional climates, outdoor exercise habits, and environmental exposures interact with canine genetics.
 
 ---
 
@@ -54,8 +54,8 @@ Goldens possess an extraordinarily high sensitivity to human vocal tones and emo
 :::
 
 ::: {.callout-caution appearance="simple"}
-#### 4. The Exercise Longevity Dividend
-As our data demonstrates, regular play isn't just entertainment—it's preventive medicine. Maintaining a high daily activity routine is associated with up to **0.9 additional years of life expectancy**, helping dogs preserve lean muscle and healthy joints into their senior years.
+#### 4. The Geographic and Environmental Dimension
+As research from the Golden Retriever Lifetime Study highlights, regional lifestyles and environmental exposures contribute significantly to health trajectories, leading scientists to study how different climates and outdoor habitats impact canine longevity.
 :::
 
 ::: {.callout-warning appearance="simple"}

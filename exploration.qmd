@@ -7,7 +7,7 @@ execute:
   message: false
 ---
 
-Use the controls below to choose what data you want to see. You can filter by overall health, activity level, gender, and weight range, and switch between the interactive chart and the data table.
+Use the controls below to choose what data you want to see from the Golden Retriever Lifetime Study cohort. You can filter by region, sex, body condition, and age range, and switch between the interactive chart and the data table.
 
 ```{r}
 #| label: setup-crosstalk
@@ -18,13 +18,22 @@ library(crosstalk)
 library(DT)
 
 dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |> 
-  mutate(
-    activity_level = factor(activity_level, levels = c("Low", "Moderate", "High")),
-    overall_health = factor(overall_health, levels = c("Poor", "Fair", "Good", "Excellent"))
+  filter(
+    Body_condition_categorical %in% c("Underweight", "Normal", "Overweight", "Obese"),
+    Region_of_residence != ""
+  ) |> 
+  transmute(
+    ID = ID,
+    Region = Region_of_residence,
+    Sex = Sex,
+    Body_Condition = factor(Body_condition_categorical, levels = c("Underweight", "Normal", "Overweight", "Obese")),
+    Enrollment_Age = round(Age_at_enrollment_years, 1),
+    Current_Age = round(Age_current_years, 1),
+    Follow_Up_Years = round(Total_follow_up_time_years, 1),
+    Diagnosis = if_else(Primary_endpoint == "" | is.na(Primary_endpoint), "None", Primary_endpoint)
   )
 
 shared_dogs <- dogs |> 
-  slice_sample(n = 1500) |> 
   SharedData$new()
 ```
 
@@ -33,10 +42,10 @@ shared_dogs <- dogs |>
 
 bscols(
   widths = c(3, 3, 3, 3),
-  filter_select("health", "Overall Health:", shared_dogs, ~overall_health),
-  filter_select("activity", "Activity Level:", shared_dogs, ~activity_level),
-  filter_select("gender", "Gender:", shared_dogs, ~gender),
-  filter_slider("weight", "Weight (lbs):", shared_dogs, ~weight_lbs, step = 1)
+  filter_select("region", "Region:", shared_dogs, ~Region),
+  filter_select("sex", "Sex:", shared_dogs, ~Sex),
+  filter_select("body_condition", "Body Condition:", shared_dogs, ~Body_Condition),
+  filter_slider("age", "Current Age (years):", shared_dogs, ~Current_Age, step = 0.5)
 )
 ```
 
@@ -49,26 +58,28 @@ bscols(
 
 plot_ly(
   shared_dogs,
-  x = ~weight_lbs,
-  y = ~lifespan_years,
-  color = ~overall_health,
+  x = ~Enrollment_Age,
+  y = ~Current_Age,
+  color = ~Body_Condition,
   colors = "Set2",
   type = "scatter",
   mode = "markers",
   marker = list(opacity = 0.65, size = 7),
   text = ~paste0(
-    "<b>Weight:</b> ", round(weight_lbs, 1), " lbs<br>",
-    "<b>Lifespan:</b> ", round(lifespan_years, 1), " yrs<br>",
-    "<b>Health:</b> ", overall_health, "<br>",
-    "<b>Activity:</b> ", activity_level, "<br>",
-    "<b>Gender:</b> ", gender
+    "<b>ID:</b> ", ID, "<br>",
+    "<b>Region:</b> ", Region, "<br>",
+    "<b>Sex:</b> ", Sex, "<br>",
+    "<b>Body Condition:</b> ", Body_Condition, "<br>",
+    "<b>Enrollment Age:</b> ", Enrollment_Age, " yrs<br>",
+    "<b>Current Age:</b> ", Current_Age, " yrs<br>",
+    "<b>Diagnosis:</b> ", Diagnosis
   ),
   hoverinfo = "text"
 ) |> 
   layout(
-    xaxis = list(title = "Weight (lbs)"),
-    yaxis = list(title = "Life Expectancy (years)"),
-    legend = list(title = list(text = "Overall Health"))
+    xaxis = list(title = "Age at Enrollment (years)"),
+    yaxis = list(title = "Current Age (years)"),
+    legend = list(title = list(text = "Body Condition"))
   )
 ```
 

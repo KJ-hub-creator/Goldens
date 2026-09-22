@@ -4,7 +4,7 @@ title: "About"
 
 ![A Golden Retriever](golden_retriever.png)
 
-This project investigates the relationship between activity levels, weight, and life expectancy in Golden Retrievers using a dataset of 10,000 observations.
+This project investigates health, regional distribution, and age in Golden Retrievers using the peer-reviewed dataset of 3,049 dogs from the Morris Animal Foundation Golden Retriever Lifetime Study.
 
 This work was completed as part of Milestone 4 for Bayesian Data Science.
 
