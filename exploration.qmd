@@ -7,7 +7,7 @@ execute:
   message: false
 ---
 
-Use the controls below to choose what data you want to see from the Golden Retriever Lifetime Study cohort. You can filter by region, sex, body condition, and age range, and switch between the interactive chart and the data table.
+Use the controls below to choose what data you want to see from the Golden Retriever Lifetime Study cohort. You can filter by region, gender, body condition, and age range, and switch between the interactive chart and the data table.
 
 ```{r}
 #| label: setup-crosstalk
@@ -25,7 +25,7 @@ dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |>
   transmute(
     ID = ID,
     Region = Region_of_residence,
-    Sex = Sex,
+    Gender = Sex,
     Body_Condition = factor(Body_condition_categorical, levels = c("Underweight", "Normal", "Overweight", "Obese")),
     Enrollment_Age = round(Age_at_enrollment_years, 1),
     Current_Age = round(Age_current_years, 1),
@@ -43,7 +43,7 @@ shared_dogs <- dogs |>
 bscols(
   widths = c(3, 3, 3, 3),
   filter_select("region", "Region:", shared_dogs, ~Region),
-  filter_select("sex", "Sex:", shared_dogs, ~Sex),
+  filter_select("gender", "Gender:", shared_dogs, ~Gender),
   filter_select("body_condition", "Body Condition:", shared_dogs, ~Body_Condition),
   filter_slider("age", "Current Age (years):", shared_dogs, ~Current_Age, step = 0.5)
 )
@@ -68,7 +68,7 @@ plot_ly(
   text = ~paste0(
     "<b>ID:</b> ", ID, "<br>",
     "<b>Region:</b> ", Region, "<br>",
-    "<b>Sex:</b> ", Sex, "<br>",
+    "<b>Gender:</b> ", Gender, "<br>",
     "<b>Body Condition:</b> ", Body_Condition, "<br>",
     "<b>Enrollment Age:</b> ", Enrollment_Age, " yrs<br>",
     "<b>Current Age:</b> ", Current_Age, " yrs<br>",
