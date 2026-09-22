@@ -15,28 +15,24 @@ execute:
 library(tidyverse)
 
 dogs <- read_csv("golden_retrievers.csv", show_col_types = FALSE) |> 
-  filter(Body_condition_categorical %in% c("Underweight", "Normal", "Overweight", "Obese")) |> 
-  mutate(
-    Body_condition_categorical = factor(Body_condition_categorical, levels = c("Underweight", "Normal", "Overweight", "Obese")),
-    Gender = factor(Sex)
-  )
+  mutate(Gender = factor(Sex))
 
 dogs |> 
-  ggplot(aes(x = Body_condition_categorical, y = Age_current_years, fill = Body_condition_categorical)) +
-  geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.35, binwidth = 0.15, alpha = 0.7) +
-  facet_wrap(~Gender) +
+  ggplot(aes(x = Age_at_enrollment_years, y = Age_current_years, color = Gender)) +
+  geom_point(alpha = 0.4, size = 1.8) +
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1) +
   labs(
-    title = "Age Distribution by Body Condition and Gender in Golden Retrievers",
+    title = "Age at Enrollment vs. Current Age in Golden Retrievers",
     subtitle = "Observations of 3,049 dogs from the Morris Animal Foundation Golden Retriever Lifetime Study",
-    x = "Body Condition",
-    y = "Current Age (years)"
+    x = "Age at Enrollment (years)",
+    y = "Current Age (years)",
+    color = "Gender"
   ) +
-  theme_minimal(base_size = 13) +
-  theme(legend.position = "none") +
-  scale_fill_brewer(palette = "Blues")
+  theme_minimal(base_size = 14) +
+  scale_color_brewer(palette = "Set1")
 ```
 
-This graphic displays observations of 3,049 real Golden Retrievers from the Golden Retriever Lifetime Study, illustrating how body condition and gender relate to age across the cohort.
+This scatter plot displays observations of 3,049 real Golden Retrievers from the Golden Retriever Lifetime Study, illustrating the relationship between enrollment age and current age across genders.
 
 Dogs play an irreplaceable role in human lives, offering loyal companionship, emotional comfort, and unconditional love. Beyond being cherished family members, dogs encourage healthier and more active lifestyles, reduce stress, and frequently serve vital functions as therapy, service, and working partners in our communities.
 
